@@ -3,7 +3,6 @@ import React, { useEffect, useState } from "react";
 const RockPaperScissors = () => {
   const [userChoice, setUserChoice] = useState("");
   const [computerChoice, setComputerChoice] = useState("");
-  // const [score, setScore] = useState({ player: 0, computer: 0 });
   const [userScore, setUserScore] = useState(0);
   const [computerScore, setComputerScore] = useState(0);
   const [draw, setDraw] = useState(false)
@@ -12,21 +11,19 @@ const RockPaperScissors = () => {
   const capitalize = (word) => {
     return `${word[0].toUpperCase()}${word.substring(1).toLowerCase()}`;
   };
-  const random = Math.floor(Math.random() * 3)
   const setChoices = (e) => {
     const userSelectedChoice = capitalize(e.target.id)
+    const random = Math.floor(Math.random() * 3)
     const randomChoice = choices[random]
-
     setUserChoice(userSelectedChoice); 
     setComputerChoice(randomChoice);
   };
 
   useEffect(() => {
     const {userScore, computerScore} = determineRoundScores(computerChoice, userChoice)
-
     setUserScore(userTotal => userScore + userTotal)
     setComputerScore(computerTotal => computerScore + computerTotal)
-    setDraw(userScore === computerScore);
+    setDraw(userChoice === computerChoice && userChoice !== "");
 
   },[userChoice, computerChoice])
 
@@ -62,7 +59,6 @@ const RockPaperScissors = () => {
     return { userScore, computerScore }
   }
 
-  // => 
 
   const reset = () => {
     setUserScore(0);
@@ -83,10 +79,10 @@ const RockPaperScissors = () => {
   return (
     <div>
       <h2>
-        Computer Choice: <span>{computerChoice}</span>
+        Your Choice: <span>{userChoice}</span>
       </h2>
       <h2>
-        Your Choice: <span>{userChoice}</span>
+        Computer Choice: <span>{computerChoice}</span>
       </h2>
       <h2>
         Result:
@@ -95,15 +91,11 @@ const RockPaperScissors = () => {
         </span>
       </h2>
       {draw && <p>It's a draw</p>}
-      <button id="rock" onClick={setChoices}>
-        Rock
-      </button>
-      <button id="paper" onClick={setChoices}>
-        Paper
-      </button>
-      <button id="scissors" onClick={setChoices}>
-        Scissors
-      </button>
+      {choices.map((choice) => {
+        return <button id={choice} onClick={setChoices}>
+          {choice}
+        </button>
+      })}
     </div>
   );
 };
