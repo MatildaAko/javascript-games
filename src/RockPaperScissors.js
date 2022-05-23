@@ -14,35 +14,55 @@ const RockPaperScissors = () => {
   };
   const random = Math.floor(Math.random() * 3)
   const setChoices = (e) => {
-    setUserChoice(capitalize(e.target.id));
-    setComputerChoice(choices[random]);
-    console.log(computerChoice);
-    
-    if (userChoice === "Rock" && computerChoice === "Paper") {
-      // setScore({ ...score, computer: (score.computer += 1) });
-      setComputerScore((computerScore) => (computerScore += 1));
-    }
-    if (userChoice === "Rock" && computerChoice === "Scissors") {
-      setUserScore((userScore) => (userScore += 1));
-    }
-    if (userChoice === "Paper" && computerChoice === "Rock") {
-      setUserScore((userScore) => (userScore += 1));
-    }
-    if (userChoice === "Paper" && computerChoice === "Scissors") {
-      setComputerScore((computerScore) => (computerScore += 1));
-    }
-    if (userChoice === "Scissors" && computerChoice === "Paper") {
-      setUserScore((userScore) => (userScore += 1));
-    }
-    if (userChoice === "Scissors" && computerChoice === "Rock") {
-      setComputerScore((computerScore) => (computerScore += 1));
-    }
-    if (userChoice === computerChoice && userChoice !== "") {
-      setDraw(true);
-    } else {
-      setDraw(false);
-    }
+    const userSelectedChoice = capitalize(e.target.id)
+    const randomChoice = choices[random]
+
+    setUserChoice(userSelectedChoice); 
+    setComputerChoice(randomChoice);
   };
+
+  useEffect(() => {
+    const {userScore, computerScore} = determineRoundScores(computerChoice, userChoice)
+
+    setUserScore(userTotal => userScore + userTotal)
+    setComputerScore(computerTotal => computerScore + computerTotal)
+    setDraw(userScore === computerScore);
+
+  },[userChoice, computerChoice])
+
+
+  const determineRoundScores = (computerValue, userValue) => {
+    let computerScore = 0 
+    let userScore = 0
+
+    if (userValue === "Rock" && computerValue === "Paper") {
+      computerScore += 1
+    }
+
+    if (userValue === "Rock" && computerValue === "Scissors") {
+      userScore += 1
+    }
+
+    if (userValue === "Paper" && computerValue === "Rock") {
+      userScore += 1
+    }
+
+    if (userValue === "Paper" && computerValue === "Scissors") {
+      computerScore += 1
+    }
+
+    if (userValue === "Scissors" && computerValue === "Paper") {
+      userScore += 1
+    }
+
+    if (userValue === "Scissors" && computerValue === "Rock") {
+      computerScore += 1
+    }
+
+    return { userScore, computerScore }
+  }
+
+  // => 
 
   const reset = () => {
     setUserScore(0);
