@@ -1,0 +1,66 @@
+[
+  {
+    "name": "bootstrap",
+    "image": "./images/memory/bootstrap-logo-vector.svg"
+  },
+  {
+    "name": "css",
+    "image": "./images/memory/css3-logo-vector.svg"
+  },
+  {
+    "name": "html",
+    "image": "./images/memory/html5-logo-vector.svg"
+  },
+  {
+    "name": "javascript",
+    "image": "./images/memory/javascript-logo-vector.svg"
+  },
+  {
+    "name": "nodejs",
+    "image": "./images/memory/nodejs-icon-logo-vector.svg"
+  },
+  {
+    "name": "sql",
+    "image": "./images/memory/postgresql-inc-logo-vector.svg"
+  },
+  {
+    "name": "python",
+    "image": "./images/memory/python-logo-vector.svg"
+  },
+  {
+    "name": "react",
+    "image": "./images/memory/react-logo-vector-1.svg"
+  },
+  {
+    "name": "bootstrap",
+    "image": "./images/memory/bootstrap-logo-vector.svg"
+  },
+  {
+    "name": "css",
+    "image": "./images/memory/css3-logo-vector.svg"
+  },
+  {
+    "name": "html",
+    "image": "./images/memory/html5-logo-vector.svg"
+  },
+  {
+    "name": "javascript",
+    "image": "./images/memory/javascript-logo-vector.svg"
+  },
+  {
+    "name": "nodejs",
+    "image": "./images/memory/nodejs-icon-logo-vector.svg"
+  },
+  {
+    "name": "sql",
+    "image": "./images/memory/postgresql-inc-logo-vector.svg"
+  },
+  {
+    "name": "python",
+    "image": "./images/memory/python-logo-vector.svg"
+  },
+  {
+    "name": "react",
+    "image": "./images/memory/react-logo-vector-1.svg"
+  }
+]
