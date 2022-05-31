@@ -2,8 +2,11 @@ import React, { useState } from "react";
 import memoryImagesJson from "./memory.json";
 const background = require("./images/memory/background.jpeg");
 
-const MemoryImage = ({ image, index, cardChosen, cardChosenId, setMatch, setScore, matchedCards }) => {
+const MemoryImage = ({ image, index, setMatch, setScore, matchedCards, setMatchedCards }) => {
   const [flipped, setFlipped] = useState(false);
+  const [cardChosen, setCardChosen] = useState([])
+  const [cardChosenId, setCardChosenId] = useState([])
+
   
   const checkForMatch = () => {
     if (cardChosen.length === 2) {
@@ -11,13 +14,13 @@ const MemoryImage = ({ image, index, cardChosen, cardChosenId, setMatch, setScor
         if (cardChosen[0] === cardChosen[1]) {
           setMatch(true);
           setScore((score) => (score += 1));
-          matchedCards.push(cardChosenId[0], cardChosenId[1]);
+          setMatchedCards(arr => [...arr, cardChosenId[0], cardChosenId[1]])
           console.log("match found"); //create
           console.log(matchedCards);
         } else {
           setMatch(false);
-          cardChosen = [];
-          cardChosenId = [];
+          setCardChosen([]);
+          setCardChosenId([]);
         }
       }, 1000);
     }
@@ -30,11 +33,12 @@ const MemoryImage = ({ image, index, cardChosen, cardChosenId, setMatch, setScor
       alt={flipped ? `${image.name}` : "background"}
       onClick={(e) => {
         console.log(memoryImagesJson);
+
         if (cardChosenId.includes(index) || matchedCards.includes(index)) {
           return;
         } else {
-          cardChosen.push(memoryImagesJson[e.target.id].name);
-          cardChosenId.push(index);
+          setCardChosen(arr => [...arr, memoryImagesJson[e.target.id].name]);
+          setCardChosenId(arr => [...arr, index]);
           checkForMatch();
           setFlipped(true);
         }

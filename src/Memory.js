@@ -7,9 +7,8 @@ const Memory = () => {
   // const [numOfFlippedCards, setNumOfFlippedCards] = useState(0);
   const [match, setMatch] = useState(false)
   const [score, setScore] = useState(0);
-  const cardChosen = [];
-  const cardChosenId = [];
-  const matchedCards = [];
+  const [matchedCards, setMatchedCards] = useState([])
+
   
   return (
     <div>
@@ -25,11 +24,9 @@ const Memory = () => {
               key={index}
               index={index}
               image={image}
-              matchedCards={matchedCards }
-              cardChosen={cardChosen}
-              cardChosenId={cardChosenId}
+              matchedCards={matchedCards}
+              setMatchedCards={setMatchedCards}
               setMatch={setMatch}
-              match={match}
               setScore={setScore}
             />
           ))}
